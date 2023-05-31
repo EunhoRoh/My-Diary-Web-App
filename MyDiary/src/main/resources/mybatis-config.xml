@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration>
+<!--  이 태그는 자바 클래스의 별칭(alias)을 정의하는 섹션입니다. 별칭은 MyBatis 매핑 파일에서 자바 객체를 참조할 때 사용됩니다. -->
+<typeAliases>
+<typeAlias alias="board" type="com.mycom.myapp.board.BoardVO" />
+<typeAlias alias="user" type="com.mycom.myapp.user.UserVO" />
+</typeAliases> 
+</configuration>

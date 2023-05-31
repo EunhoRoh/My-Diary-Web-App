@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 설정 파일에서 사용할 데이터베이스 연결을 위한 DataSource 빈 설정 
+	이 태그는 데이터베이스 연결을 위한 DataSource 빈을 설정합니다. 여기서는 MySQL 데이터베이스와의 연결을 설정하고 있습니다.
+	-->
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://walab.handong.edu:3306/PP3_21700592" />
+		<property name="username" value="PP3_21700592" />
+		<property name="password" value="aiB9edah" />
+	</bean>
+	
+	<!-- MyBatis의 SqlSessionFactory를 설정하는 빈 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mappers/*-mapper.xml"></property>
+	</bean>
+	
+	<!-- SqlSessionTemplate을 설정하는 빈 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+</beans>

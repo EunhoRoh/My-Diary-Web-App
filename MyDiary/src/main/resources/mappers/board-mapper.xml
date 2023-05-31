@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis 매퍼 파일의 DTD(DTD Type Definition)를 선언합니다.-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 매퍼 파일의 네임스페이스를 "Board"로 설정합니다. 이는 매퍼 파일에서 사용되는 SQL 구문들을 식별하는 데 사용됩니다.-->
+<mapper namespace="Board">
+<!-- "insertBoard"라는 아이디로 쿼리를 정의합니다. SQL 쿼리는 INSERT INTO 문으로 게시글을 추가하는 쿼리입니다.-->
+<insert id="insertBoard">
+insert into BOARD (title, writer, content) values
+(#{title} , #{writer} , #{content})
+</insert>
+<!-- "updateBoard"라는 아이디로 쿼리를 정의합니다. SQL 쿼리는 UPDATE 문으로 게시글을 수정하는 쿼리입니다.-->
+<update id="updateBoard">
+update BOARD set title=#{title}, content=#{content}, writer=#{writer} where seq=#{seq}
+</update>
+<!--  "deleteBoard"라는 아이디로 쿼리를 정의합니다. SQL 쿼리는 DELETE 문으로 게시글을 삭제하는 쿼리입니다.-->
+<delete id="deleteBoard">
+delete from BOARD where seq=#{seq}
+</delete>
+<!--  "getBoard"라는 아이디로 쿼리를 정의합니다. SQL 쿼리는 SELECT 문으로 특정 게시글을 조회하는 쿼리입니다.-->
+<select id="getBoard" resultType="board">
+select * from BOARD where seq=#{seq}
+</select>
+<!--  "getBoardList"라는 아이디로 쿼리를 정의합니다. SQL 쿼리는 SELECT 문으로 모든 게시글을 조회하는 쿼리입니다.-->
+<select id="getBoardList" resultType="board">
+select * from BOARD order by seq desc
+</select> 
+</mapper>
